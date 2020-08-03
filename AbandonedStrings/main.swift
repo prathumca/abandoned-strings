@@ -37,18 +37,20 @@ func findFilesIn(_ directories: [String], withExtensions extensions: [String]) -
     return files
 }
 
+//TODO: - Add XML loading mechanism as well based on the file extension type - Support for Kotlin
 func contentsOfFile(_ filePath: String) -> String {
     do {
         return try String(contentsOfFile: filePath)
     }
     catch { 
-        print("cannot read file!!!")
+        print("cannot read file at \(filePath)!!!")
         exit(1)
     }
 }
 
 func concatenateAllSourceCodeIn(_ directories: [String], withStoryboard: Bool) -> String {
-    var extensions = ["h", "m", "swift", "jsbundle"]
+    //Added by Prathap: To support Kotlin as well
+    var extensions = ["h", "m", "swift", "jsbundle", "kt"]
     if withStoryboard {
         extensions.append("storyboard")
     }
@@ -73,7 +75,7 @@ func extractStringIdentifiersFrom(_ stringsFile: String) -> [String] {
 func extractStringIdentifierFromTrimmedLine(_ line: String) -> String {
     let indexAfterFirstQuote = line.index(after: line.startIndex)
     let lineWithoutFirstQuote = line[indexAfterFirstQuote...]
-    let endIndex = lineWithoutFirstQuote.index(of:"\"")!
+    let endIndex = lineWithoutFirstQuote.firstIndex(of:"\"")!
     let identifier = lineWithoutFirstQuote[..<endIndex]
     return String(identifier)
 }
@@ -85,8 +87,9 @@ func findStringIdentifiersIn(_ stringsFile: String, abandonedBySourceCode source
         let quotedIdentifier = "\"\(identifier)\""
         let quotedIdentifierForStoryboard = "\"@\(identifier)\""
         let signalQuotedIdentifierForJs = "'\(identifier)'"
+        //Added by Prathap: This could be a normal declaration in the form of enum, which is a subclass of 'LocalizationKey'
         let isAbandoned = (sourceCode.contains(quotedIdentifier) == false && sourceCode.contains(quotedIdentifierForStoryboard) == false &&
-            sourceCode.contains(signalQuotedIdentifierForJs) == false)
+            sourceCode.contains(signalQuotedIdentifierForJs) == false) && (sourceCode.contains(identifier) == false)
         return isAbandoned
     }
 }
@@ -107,7 +110,14 @@ typealias StringsFileToAbandonedIdentifiersMap = [String: [String]]
 func findAbandonedIdentifiersIn(_ rootDirectories: [String], withStoryboard: Bool) -> StringsFileToAbandonedIdentifiersMap {
     var map = StringsFileToAbandonedIdentifiersMap()
     let sourceCode = concatenateAllSourceCodeIn(rootDirectories, withStoryboard: withStoryboard)
-    let stringsFiles = findFilesIn(rootDirectories, withExtensions: ["strings"])
+//    do {
+//        if let url = URL(string: "file:///Users/pdodla/Documents/Wyndham/Development/BitBucket-iOS/allcode.txt") {
+//            try sourceCode.write(to: url, atomically: true, encoding: String.Encoding.utf8)
+//        }
+//    } catch {
+//
+//    }
+    let stringsFiles = findFilesIn(rootDirectories, withExtensions: ["strings", "xml"])
     for stringsFile in stringsFiles {
         dispatchGroup.enter()
         DispatchQueue.global().async {
@@ -131,15 +141,19 @@ func findAbandonedIdentifiersIn(_ rootDirectories: [String], withStoryboard: Boo
 
 func getRootDirectories() -> [String]? {
     var c = [String]()
-    for arg in CommandLine.arguments {
-        c.append(arg)
-    }
-    c.remove(at: 0)
+    #if DEBUG
+        c.append("/Users/pdodla/Documents/Wyndham/Development/BitBucket-iOS/WyndhamRewards")
+    #else
+        for arg in CommandLine.arguments {
+            c.append(arg)
+        }
+        c.remove(at: 0)
+    #endif
     if isOptionalParameterForStoryboardAvailable() {
         c.removeLast()
     }
     if isOptionaParameterForWritingAvailable() {
-        c.remove(at: c.index(of: "write")!)
+        c.remove(at: c.firstIndex(of: "write")!)
     }
     return c
 }
