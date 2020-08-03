@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0361F13C1C605FE0009D519A /* AbandonedStrings */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AbandonedStrings; sourceTree = BUILT_PRODUCTS_DIR; };
+		0361F13C1C605FE0009D519A /* localizer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = localizer; sourceTree = BUILT_PRODUCTS_DIR; };
 		0361F13F1C605FE0009D519A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,7 +49,7 @@
 		0361F13D1C605FE0009D519A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0361F13C1C605FE0009D519A /* AbandonedStrings */,
+				0361F13C1C605FE0009D519A /* localizer */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,9 +65,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0361F13B1C605FE0009D519A /* AbandonedStrings */ = {
+		0361F13B1C605FE0009D519A /* localizer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0361F1431C605FE0009D519A /* Build configuration list for PBXNativeTarget "AbandonedStrings" */;
+			buildConfigurationList = 0361F1431C605FE0009D519A /* Build configuration list for PBXNativeTarget "localizer" */;
 			buildPhases = (
 				0361F1381C605FE0009D519A /* Sources */,
 				0361F1391C605FE0009D519A /* Frameworks */,
@@ -77,9 +77,9 @@
 			);
 			dependencies = (
 			);
-			name = AbandonedStrings;
+			name = localizer;
 			productName = AbandonedStrings;
-			productReference = 0361F13C1C605FE0009D519A /* AbandonedStrings */;
+			productReference = 0361F13C1C605FE0009D519A /* localizer */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -111,7 +111,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0361F13B1C605FE0009D519A /* AbandonedStrings */,
+				0361F13B1C605FE0009D519A /* localizer */,
 			);
 		};
 /* End PBXProject section */
@@ -263,7 +263,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0361F1431C605FE0009D519A /* Build configuration list for PBXNativeTarget "AbandonedStrings" */ = {
+		0361F1431C605FE0009D519A /* Build configuration list for PBXNativeTarget "localizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0361F1441C605FE0009D519A /* Debug */,

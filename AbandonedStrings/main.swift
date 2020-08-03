@@ -48,6 +48,12 @@ func contentsOfFile(_ filePath: String) -> String {
     }
 }
 
+func isFileStringsXML(_ filePath: String) -> Bool {
+    let filename = (filePath as NSString).lastPathComponent
+    let fileExtention = (filename as NSString).pathExtension
+    return fileExtention == "xml" && filename.hasPrefix("strings")
+}
+
 func concatenateAllSourceCodeIn(_ directories: [String], withStoryboard: Bool) -> String {
     //Added by Prathap: To support Kotlin as well
     var extensions = ["h", "m", "swift", "jsbundle", "kt"]
@@ -65,6 +71,9 @@ func concatenateAllSourceCodeIn(_ directories: [String], withStoryboard: Bool) -
 let doubleQuote = "\""
 
 func extractStringIdentifiersFrom(_ stringsFile: String) -> [String] {
+    if isFileStringsXML(stringsFile) {
+        return [""]
+    }
     return contentsOfFile(stringsFile)
         .components(separatedBy: "\n")
         .map    { $0.trimmingCharacters(in: CharacterSet.whitespaces) }

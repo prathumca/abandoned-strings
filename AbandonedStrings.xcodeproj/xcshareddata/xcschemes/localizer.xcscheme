@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0361F13B1C605FE0009D519A"
-               BuildableName = "AbandonedStrings"
-               BlueprintName = "AbandonedStrings"
+               BuildableName = "localizer"
+               BlueprintName = "localizer"
                ReferencedContainer = "container:AbandonedStrings.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0361F13B1C605FE0009D519A"
-            BuildableName = "AbandonedStrings"
-            BlueprintName = "AbandonedStrings"
+            BuildableName = "localizer"
+            BlueprintName = "localizer"
             ReferencedContainer = "container:AbandonedStrings.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0361F13B1C605FE0009D519A"
-            BuildableName = "AbandonedStrings"
-            BlueprintName = "AbandonedStrings"
+            BuildableName = "localizer"
+            BlueprintName = "localizer"
             ReferencedContainer = "container:AbandonedStrings.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
